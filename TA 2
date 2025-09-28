@@ -1,0 +1,53 @@
+#include <iostream> 
+using namespace std; 
+
+void tukar(int *x, int *y) { 
+    int z = *x; 
+    *x = *y; 
+    *y = z; 
+} 
+
+int main() { 
+    int n; 
+    int u = 0;
+    int SISWA[1023]; 
+    double r = 0;
+
+    cout << "MASUKAN JUMLAH SISWA YANG MENGIKUTI KUIS: ";
+    cin >> n; 
+    for (int i = 0; i < n; i++) { 
+        cout << "MASUKAN NILAI KUIS SISWA KE-" << i + 1 << " : ";
+        cin >> SISWA[i];
+        r = SISWA[i] + r;
+    } 
+
+    for (int i = 0; i < n - 1; i++) { 
+        for (int j = 0; j < n - i - 1; j++) { 
+            if (SISWA[j] > SISWA[j + 1]) { 
+                tukar(&SISWA[j], &SISWA[j + 1]); 
+            } 
+        } 
+    } 
+    for (int i = 0; i < n; i++) { 
+        if(SISWA[i] >= 50 && SISWA[i] <= 100)
+        u = u + 1;
+    } 
+
+    cout << endl;
+    cout << "SISWA YANG MENGIKUTI KUIS: " << n << endl;
+    cout << "URUTAN NILAI KUIS" << endl;
+        cout << "TIDAK LULUS : " << n - u << endl;
+        for (int i = 0; i < n; i++) { 
+        if(SISWA[i] >= 0 && SISWA[i] < 50){
+        cout << SISWA[i] << endl;}
+        }
+
+        cout << "LULUS : " << u << endl;
+        for (int i = 0; i < n; i++) { 
+        if (SISWA[i] >= 50 && SISWA[i] <= 100)
+        cout << SISWA[i] << endl; 
+    }
+    
+    cout << "RATA-RATA NILAI: " << r / n << endl;
+    return 0; 
+}
